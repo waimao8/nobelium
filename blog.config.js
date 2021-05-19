@@ -40,7 +40,7 @@ const BLOG = {
     gitalkConfig: {
       repo: 'gittalk', // The repository of store comments
       owner: 'tlyong1992',
-      admin: [’tlyong1992‘],
+      admin: ['tlyong1992'],
       clientID: 'be7864a16b693e256f8f',
       clientSecret: 'dbd0f6d9ceea8940f6ed20936b415274b8fe66a2',
       distractionFreeMode: false
