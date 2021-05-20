@@ -4,7 +4,7 @@ const BLOG = {
   email: 'tlyong1992@hotmail.com',
   link: 'https://tangly1024.tk',
   description: 'This gonna be an awesome website.',
-  lang: 'en-US',
+  lang: 'zh-CN', // ['zh-CN','en-US']
   appearance: 'auto', // ['light', 'dark', 'auto'],
   font: 'sans-serif', // ['sans-serif', 'serif']
   lightBackground: '#ffffff', // use hex value, don't forget '#' e.g #fffefc
