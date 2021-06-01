@@ -119,6 +119,25 @@ class MyDocument extends Document {
               }}
             />
           )}
+          {/* 百度+站长统计 */}
+          {1===1 && (
+            <>
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
+                  var _hmt = _hmt || [];
+                  (function() {
+                    var hm = document.createElement("script");
+                    hm.src = "https://hm.baidu.com/hm.js?f683ef76f06bb187cbed5546f6f28f28";
+                    var s = document.getElementsByTagName("script")[0]; 
+                    s.parentNode.insertBefore(hm, s);
+                  })();
+                  `
+                }}
+              />
+              <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1279970751&web_id=1279970751"></script>
+            </>
+          )}
           {/* 谷歌统计 */}
           {BLOG.analytics && BLOG.analytics.provider === 'ga' && (
             <>
@@ -145,24 +164,6 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-        {/* 百度统计 */}
-        {1===1 && (
-            <>
-              <script
-                dangerouslySetInnerHTML={{
-                  __html: `
-                  var _hmt = _hmt || [];
-                  (function() {
-                    var hm = document.createElement("script");
-                    hm.src = "https://hm.baidu.com/hm.js?f683ef76f06bb187cbed5546f6f28f28";
-                    var s = document.getElementsByTagName("script")[0]; 
-                    s.parentNode.insertBefore(hm, s);
-                  })();
-                  `
-                }}
-              />
-            </>
-          )}
       </Html>
     )
   }
