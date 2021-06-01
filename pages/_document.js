@@ -119,7 +119,7 @@ class MyDocument extends Document {
               }}
             />
           )}
-          {/* 百度+站长统计 */}
+          {/* 百度 */}
           {1===1 && (
             <>
               <script
@@ -135,7 +135,6 @@ class MyDocument extends Document {
                   `
                 }}
               />
-              <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1279970751&web_id=1279970751"></script>
             </>
           )}
           {/* 谷歌统计 */}

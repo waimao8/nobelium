@@ -16,6 +16,18 @@ const Footer = ({ fullWidth }) => {
           <p>
             © {BLOG.author} {from === y || !from ? y : `${from} - ${y}`} <a href="https://beian.miit.gov.cn/">闽ICP备20010331号
 </a>
+          {/* 站长统计 */}
+          {1===1 && (
+            <>
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
+                  document.write(unescape("%3Cspan id='cnzz_stat_icon_1279970751'%3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/z_stat.php%3Fid%3D1279970751' type='text/javascript'%3E%3C/script%3E"));
+                  `
+                }}
+              />
+            </>
+          )}
           </p>
           <Vercel />
         </div>
