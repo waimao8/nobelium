@@ -137,6 +137,18 @@ class MyDocument extends Document {
               />
             </>
           )}
+            {/* 站长统计 */}
+            {1===1 && (
+            <>
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
+                  document.write(unescape("%3Cspan style="display:none" id='cnzz_stat_icon_1279970751'%3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/z_stat.php%3Fid%3D1279970751' type='text/javascript'%3E%3C/script%3E"));
+                  `
+                }}
+              />
+            </>
+          )}
           {/* 谷歌统计 */}
           {BLOG.analytics && BLOG.analytics.provider === 'ga' && (
             <>
