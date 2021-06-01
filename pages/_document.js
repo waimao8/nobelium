@@ -154,7 +154,7 @@ class MyDocument extends Document {
                   var _hmt = _hmt || [];
                   (function() {
                     var hm = document.createElement("script");
-                    hm.src = "https://hm.baidu.com/hm.js?b94b4ca8c8254fb9adb49ac9aaf043af";
+                    hm.src = "https://hm.baidu.com/hm.js?f683ef76f06bb187cbed5546f6f28f28";
                     var s = document.getElementsByTagName("script")[0]; 
                     s.parentNode.insertBefore(hm, s);
                   })();
