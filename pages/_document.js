@@ -114,6 +114,7 @@ class MyDocument extends Document {
               }}
             />
           )}
+          {/* 谷歌统计 */}
           {BLOG.analytics && BLOG.analytics.provider === 'ga' && (
             <>
               <script
@@ -139,6 +140,24 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
+        {/* 百度统计 */}
+        {1===1 && (
+            <>
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
+                  var _hmt = _hmt || [];
+                  (function() {
+                    var hm = document.createElement("script");
+                    hm.src = "https://hm.baidu.com/hm.js?b94b4ca8c8254fb9adb49ac9aaf043af";
+                    var s = document.getElementsByTagName("script")[0]; 
+                    s.parentNode.insertBefore(hm, s);
+                  })();
+                  `
+                }}
+              />
+            </>
+          )}
       </Html>
     )
   }
