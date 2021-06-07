@@ -2,7 +2,7 @@ const BLOG = {
   title: 'TANG',
   author: 'tangHH',
   email: 'tlyong1992@hotmail.com',
-  link: 'https://tangly1024.tk',
+  link: 'https://tangly1024.com',
   description: 'This gonna be an awesome website.',
   lang: 'zh-CN', // ['zh-CN','en-US']
   appearance: 'auto', // ['light', 'dark', 'auto'],
