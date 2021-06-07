@@ -3,7 +3,7 @@ const BLOG = {
   author: 'tangHH',
   email: 'tlyong1992@hotmail.com',
   link: 'https://tangly1024.com',
-  description: 'This gonna be an awesome website.',
+  description: 'TangHH博客',
   lang: 'zh-CN', // ['zh-CN','en-US']
   appearance: 'auto', // ['light', 'dark', 'auto'],
   font: 'sans-serif', // ['sans-serif', 'serif']
@@ -11,7 +11,7 @@ const BLOG = {
   darkBackground: '#111827', // use hex value, don't forget '#'
   path: '', // leave this empty unless you want to deploy Nobelium in a folder
   since: 2021, // if leave this empty, current year will be used.
-  postsPerPage: 7,
+  postsPerPage: 8,
   sortByDate: false,
   showAbout: true, // WIP
   showArchive: true, // WIP
