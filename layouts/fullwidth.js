@@ -41,7 +41,7 @@ const CusdisComponent = dynamic(
 )
 
 const mapPageUrl = id => {
-  return 'https://www.notion.so/' + id.replace(/-/g, '')
+  return BLOG.path + id.replace(/-/g, '')
 }
 
 const FullWidthLayout = ({ children, blockMap, frontMatter, emailHash }) => {

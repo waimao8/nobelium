@@ -44,7 +44,8 @@ export async function getStaticProps({ params: { slug } }) {
     blockMap = await getPostBlocks(slug)
     const rawMetadata = blockMap.block[idToUuid(slug)].value
     const date = new Date(rawMetadata.last_edited_time).toJSON().substr(0, 10).replace('T', ' ')
-    post = { id: slug, type: 'POST', date: {start_date:date} }
+    const title = rawMetadata.properties.title
+    post = { id: slug, title, type: 'POST', date: { start_date: date } }
   } else {
     blockMap = await getPostBlocks(post.id)
   }
