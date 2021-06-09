@@ -2,12 +2,24 @@ import Image from 'next/image'
 import Container from '@/components/Container'
 import TagItem from '@/components/TagItem'
 import { useRouter } from 'next/router'
-import { NotionRenderer, Equation, Code, CollectionRow } from 'react-notion-x'
+import { NotionRenderer, Equation, Code, CollectionRow, Collection } from 'react-notion-x'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
 import dynamic from 'next/dynamic'
 import 'gitalk/dist/gitalk.css'
 import { useLocale } from '@/lib/locale'
+
+// core styles shared by all of react-notion-x (required)
+import 'react-notion-x/src/styles.css'
+
+// used for code syntax highlighting (optional)
+import 'prismjs/themes/prism-tomorrow.css'
+
+// used for collection views (optional)
+import 'rc-dropdown/assets/index.css'
+
+// used for rendering equations (optional)
+import 'katex/dist/katex.min.css'
 
 const GitalkComponent = dynamic(
   () => {
@@ -85,10 +97,12 @@ const FullWidthLayout = ({ children, blockMap, frontMatter, emailHash }) => {
             <NotionRenderer
               recordMap={blockMap}
               components={{
+                collection: Collection,
                 equation: Equation,
                 code: Code,
                 collectionRow: CollectionRow
               }}
+              showTableOfContents={true}
               mapPageUrl={mapPageUrl}
             />
           </div>
