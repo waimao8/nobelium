@@ -3,6 +3,7 @@ import FullWidthLayout from '@/layouts/fullwidth'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import BLOG from '@/blog.config'
 import { createHash } from 'crypto'
+import { idToUuid } from 'notion-utils'
 
 const BlogPost = ({ post, blockMap, emailHash }) => {
   if (!post) return null
@@ -37,8 +38,16 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params: { slug } }) {
   let posts = await getAllPosts()
   posts = posts.filter(post => post.status[0] === 'Published')
-  const post = posts.find(t => t.slug === slug)
-  const blockMap = await getPostBlocks(post.id)
+  let post = posts.find(t => t.slug === slug)
+  let blockMap = {}
+  if (!post) {
+    blockMap = await getPostBlocks(slug)
+    const rawMetadata = blockMap.block[idToUuid(slug)].value
+    const date = new Date(rawMetadata.last_edited_time).toJSON().substr(0, 10).replace('T', ' ')
+    post = { id: slug, type: 'POST', date: {start_date:date} }
+  } else {
+    blockMap = await getPostBlocks(post.id)
+  }
   const emailHash = createHash('md5').update(BLOG.email).digest('hex')
 
   return {
