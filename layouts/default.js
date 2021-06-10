@@ -2,12 +2,14 @@ import Image from 'next/image'
 import Container from '@/components/Container'
 import TagItem from '@/components/TagItem'
 import { useRouter } from 'next/router'
-import { NotionRenderer, Equation, Code, CollectionRow, Collection } from 'react-notion-x'
+import { NotionRenderer, Equation, Code, CollectionRow, Collection, cs } from 'react-notion-x'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
 import dynamic from 'next/dynamic'
 import 'gitalk/dist/gitalk.css'
 import { useLocale } from '@/lib/locale'
+import React from 'react'
+import throttle from 'lodash.throttle'
 
 // core styles shared by all of react-notion-x (required)
 import 'react-notion-x/src/styles.css'
@@ -20,6 +22,7 @@ import 'rc-dropdown/assets/index.css'
 
 // used for rendering equations (optional)
 import 'katex/dist/katex.min.css'
+import { getBlockParentPage, getPageTableOfContents, uuidToId } from 'notion-utils'
 
 const GitalkComponent = dynamic(
   () => {
@@ -48,6 +51,51 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
   const locale = useLocale()
   const router = useRouter()
   const cusdisI18n = ['zh-cn', 'es', 'tr', 'pt-BR', 'oc']
+  const parentPageBlock = getBlockParentPage({ parent_id: frontMatter.id }, blockMap)
+  const toc = getPageTableOfContents(parentPageBlock, blockMap)
+  const [activeSection, setActiveSection] = React.useState(null)
+  const throttleMs = 100
+  const actionSectionScrollSpy = throttle(() => {
+    const sections = document.getElementsByClassName('notion-h')
+    let prevBBox = null
+    let currentSectionId = activeSection
+
+    for (let i = 0; i < sections.length; ++i) {
+      const section = sections[i]
+      if (!section || !(section instanceof Element)) continue
+
+      if (!currentSectionId) {
+        currentSectionId = section.getAttribute('data-id')
+      }
+
+      const bbox = section.getBoundingClientRect()
+      const prevHeight = prevBBox ? bbox.top - prevBBox.bottom : 0
+      const offset = Math.max(150, prevHeight / 4)
+
+      // GetBoundingClientRect returns values relative to viewport
+      if (bbox.top - offset < 0) {
+        currentSectionId = section.getAttribute('data-id')
+
+        prevBBox = bbox
+        continue
+      }
+
+      // No need to continue loop, if last element has been detected
+      break
+    }
+
+    setActiveSection(currentSectionId)
+  }, throttleMs)
+  if (toc) {
+    React.useEffect(() => {
+      window.addEventListener('scroll', actionSectionScrollSpy)
+      actionSectionScrollSpy()
+      return () => {
+        window.removeEventListener('scroll', actionSectionScrollSpy)
+      }
+    }, [])
+  }
+
   return (
     <Container
       layout="blog"
@@ -56,6 +104,7 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
       // date={new Date(frontMatter.publishedAt).toISOString()}
       type="article"
     >
+      <div className="notion-page-content-has-aside">
       <article>
         <h1 className="font-bold text-3xl text-black dark:text-white">
           {frontMatter.title}
@@ -101,12 +150,56 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
                 code: Code,
                 collectionRow: CollectionRow
               }}
+              // fullPage={true}
+              showCollectionViewDropdown={false}
               showTableOfContents={true}
               mapPageUrl={mapPageUrl}
             />
           </div>
         )}
       </article>
+        {toc && (
+          <aside className='notion-aside'>
+            <div className='notion-aside-table-of-contents'>
+              <div className='notion-aside-table-of-contents-header'>
+                目录
+              </div>
+
+              <nav
+                className='notion-table-of-contents notion-gray'
+              >
+                {toc.map((tocItem) => {
+                  const id = uuidToId(tocItem.id)
+
+                  return (
+                    <a
+                      key={id}
+                      href={`#${id}`}
+                      className={cs(
+                        'notion-table-of-contents-item',
+                        `notion-table-of-contents-item-indent-level-${tocItem.indentLevel}`,
+                        activeSection === id &&
+                        'notion-table-of-contents-active-item'
+                      )}
+                    >
+                      <span
+                        className='notion-table-of-contents-item-body'
+                        style={{
+                          display: 'inline-block',
+                          marginLeft: tocItem.indentLevel * 16
+                        }}
+                      >
+                        {tocItem.text}
+                      </span>
+                    </a>
+                  )
+                })}
+              </nav>
+            </div>
+          </aside>
+        )}
+      </div>
+
       <div className="flex justify-between font-medium text-gray-500 dark:text-gray-400">
         <button
           onClick={() => router.push(BLOG.path || '/')}

@@ -102,6 +102,7 @@ const FullWidthLayout = ({ children, blockMap, frontMatter, emailHash }) => {
                 code: Code,
                 collectionRow: CollectionRow
               }}
+              showCollectionViewDropdown={false}
               showTableOfContents={true}
               mapPageUrl={mapPageUrl}
             />
