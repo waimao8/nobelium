@@ -15,7 +15,7 @@ import throttle from 'lodash.throttle'
 import 'react-notion-x/src/styles.css'
 
 // used for code syntax highlighting (optional)
-import 'prismjs/themes/prism-tomorrow.css'
+// import 'prismjs/themes/prism-tomorrow.css'
 
 // used for collection views (optional)
 import 'rc-dropdown/assets/index.css'
