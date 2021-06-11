@@ -151,7 +151,6 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
                 code: Code,
                 collectionRow: CollectionRow
               }}
-              // fullPage={true}
               showCollectionViewDropdown={false}
               showTableOfContents={true}
               mapPageUrl={mapPageUrl}
