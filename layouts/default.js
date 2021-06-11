@@ -203,7 +203,7 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
 
       <div className="flex justify-between font-medium text-gray-500 dark:text-gray-400">
         <button
-          onClick={() => router.push(BLOG.path || '/')}
+          onClick={() => router.back()}
           className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
         >
           ← {locale.POST.BACK}
