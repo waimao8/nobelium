@@ -30,7 +30,7 @@ export async function getStaticPaths() {
   let posts = await getAllPosts()
   posts = posts.filter(post => post.status[0] === 'Published')
   return {
-    paths: posts.map(row => `${BLOG.path}/${row.slug}`),
+    paths: posts.map(row => row.slug? `${BLOG.path}/${row.slug}` :`${BLOG.path}/${row.id}`),
     fallback: true
   }
 }

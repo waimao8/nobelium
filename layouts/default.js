@@ -52,7 +52,8 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
   const router = useRouter()
   const cusdisI18n = ['zh-cn', 'es', 'tr', 'pt-BR', 'oc']
   const parentPageBlock = getBlockParentPage({ parent_id: frontMatter.id }, blockMap)
-  const toc = getPageTableOfContents(parentPageBlock, blockMap)
+  let toc = null
+  if (parentPageBlock) toc = getPageTableOfContents(parentPageBlock, blockMap)
   const [activeSection, setActiveSection] = React.useState(null)
   const throttleMs = 100
   const actionSectionScrollSpy = throttle(() => {
