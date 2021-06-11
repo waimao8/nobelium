@@ -1,5 +1,5 @@
 import '@/styles/notion.css'
-// import 'rc-dropdown/assets/index.css'
+import 'rc-dropdown/assets/index.css'
 import 'katex/dist/katex.min.css'
 import '@/styles/globals.css'
 import '@/styles/prism-theme.css'
