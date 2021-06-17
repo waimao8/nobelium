@@ -53,8 +53,9 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
   const router = useRouter()
   const cusdisI18n = ['zh-cn', 'es', 'tr', 'pt-BR', 'oc']
   const parentPageBlock = getBlockParentPage({ parent_id: frontMatter.id }, blockMap)
-  let toc = null
+  let toc = []
   if (parentPageBlock) toc = getPageTableOfContents(parentPageBlock, blockMap)
+  const showToc = toc.length >= 1
   const [activeSection, setActiveSection] = React.useState(null)
   const throttleMs = 100
   const actionSectionScrollSpy = throttle(() => {
@@ -106,8 +107,7 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
       // date={new Date(frontMatter.publishedAt).toISOString()}
       type="article"
     >
-      <div className="notion-page-content-has-aside">
-      <article className="shadow-2xl rounded-lg p-20">
+      <article className="md:shadow-2xl md:rounded-lg md:p-20">
         <h1 className="font-bold text-3xl text-black dark:text-white">
           {frontMatter.title}
         </h1>
@@ -160,8 +160,8 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
         )}
       </article>
 
-        {toc && (
-          <aside className='notion-aside fixed shadow-2xl rounded-lg right-2 p-2'>
+        {showToc && toc && (
+          <aside className='notion-aside fixed shadow-2xl rounded-lg right-2 p-2 block'>
             <div className='notion-aside-table-of-contents px-10'>
               <div className='notion-aside-table-of-contents-header'>
                 目录
@@ -200,7 +200,6 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
             </div>
           </aside>
         )}
-      </div>
 
       <div className="flex justify-between font-medium text-gray-500 dark:text-gray-400">
         <button
