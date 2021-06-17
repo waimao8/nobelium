@@ -107,7 +107,7 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
       type="article"
     >
       <div className="notion-page-content-has-aside">
-      <article>
+      <article className="shadow-2xl rounded-lg p-20">
         <h1 className="font-bold text-3xl text-black dark:text-white">
           {frontMatter.title}
         </h1>
@@ -159,9 +159,10 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
           </div>
         )}
       </article>
+
         {toc && (
-          <aside className='notion-aside'>
-            <div className='notion-aside-table-of-contents'>
+          <aside className='notion-aside fixed shadow-2xl rounded-lg right-2 p-2'>
+            <div className='notion-aside-table-of-contents px-10'>
               <div className='notion-aside-table-of-contents-header'>
                 目录
               </div>
