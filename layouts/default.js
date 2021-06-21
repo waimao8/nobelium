@@ -140,7 +140,7 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
               </div>
             )}
             <div id="busuanzi_container_page_pv" className="px-3">
-              <span id="busuanzi_value_page_pv"></span> 次阅读
+              &nbsp;阅读 &nbsp;<span id="busuanzi_value_page_pv"></span>
             </div>
           </nav>
         )}

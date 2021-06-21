@@ -16,7 +16,7 @@ const Footer = ({ fullWidth }) => {
             © {BLOG.author} {from === y || !from ? y : `${from} - ${y}`}
             <a href="https://beian.miit.gov.cn/">闽ICP备20010331号</a>
           </p>
-          <span id='busuanzi_container_site_pv'>本站总访问量<span id='busuanzi_value_site_pv'></span>次</span>
+          <span id='busuanzi_container_site_pv'>站点访问量<span id='busuanzi_value_site_pv'></span>次</span>
         </div>
       </div>
     </div>
