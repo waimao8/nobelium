@@ -108,7 +108,7 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
       type="article"
     >
       <article className="md:p-20">
-        <img src={frontMatter.cover} className={"w-full max-h-60 mb-3 object-cover"}/>
+        <img src={frontMatter.page_cover} className={"w-full max-h-60 mb-3 object-cover"}/>
         <h1 className="font-bold text-3xl text-black dark:text-white">
           {frontMatter.title}
         </h1>
