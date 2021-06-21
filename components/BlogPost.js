@@ -4,25 +4,19 @@ import formatDate from '@/lib/formatDate'
 
 const BlogPost = ({ post }) => {
   return (
-    <article key={post.id} className="mb-6 md:mb-8 shadow-md rounded-lg p-10">
-      <header className="flex flex-col justify-between md:flex-row md:items-baseline">
-        <Link href={`${BLOG.path}/${post.slug}`}>
-          <a>
-            <h2 className="text-lg md:text-xl font-medium mb-2 cursor-pointer text-black dark:text-gray-100">
-              {post.title}
-            </h2>
-          </a>
-        </Link>
-        <time className="flex-shrink-0 text-gray-600 dark:text-gray-400">
-          {formatDate(post?.date?.start_date || post.createdTime, BLOG.lang)}
-        </time>
-      </header>
-      <main>
-        <p className="hidden md:block leading-8 text-gray-700 dark:text-gray-300">
-          {post.summary}
-        </p>
-      </main>
-    </article>
+      <article key={post.id} className="mb-6 md:mb-8 max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-3xl">
+        <div className="md:flex">
+          <Link className="md:flex-shrink-0" href={`${BLOG.path}/${post.slug}`} >
+            <img className="h-lg w-full object-cover md:h-full md:w-56" src={post.cover}  style={{"objectFit?":"cover"}}
+                 alt="Man looking at item at a store"/>
+          </Link>
+          <main className="p-8 dark:text-gray-300">
+            <a href={`${BLOG.path}/${post.slug}`} className="block mt-1 text-xl leading-tight font-medium text-black hover:underline">{post.title}</a>
+            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{formatDate(post?.date?.start_date || post.createdTime, BLOG.lang)}</div>
+            <p className="mt-2 text-gray-500">{post.summary}</p>
+          </main>
+        </div>
+      </article>
   )
 }
 
