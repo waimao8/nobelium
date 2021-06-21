@@ -7,8 +7,8 @@ const BlogPost = ({ post }) => {
       <article key={post.id} className="mb-6 md:mb-8 max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-3xl">
         <div className="md:flex">
           <Link className="md:flex-shrink-0" href={`${BLOG.path}/${post.slug}`} >
-            <img className="h-lg w-full object-cover md:h-full md:w-56" src={post.cover}  style={{"objectFit?":"cover"}}
-                 alt="Man looking at item at a store"/>
+            <img className="h-52 w-full md:h-44 md:w-56 object-cover" src={post.cover}
+                 alt={post.title}/>
           </Link>
           <main className="p-8 dark:text-gray-300">
             <a href={`${BLOG.path}/${post.slug}`} className="block mt-1 text-xl leading-tight font-medium text-black hover:underline">{post.title}</a>
