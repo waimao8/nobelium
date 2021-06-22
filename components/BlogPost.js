@@ -11,8 +11,8 @@ const BlogPost = ({ post }) => {
                  alt={post.title}/>
           </Link>
           <main className="p-8 dark:text-gray-300">
-            <a href={`${BLOG.path}/${post.slug}`} className="block mt-1 text-xl leading-tight font-medium text-black dark:text-white hover:underline">{post.title}</a>
-            <div className="uppercase tracking-wide text-sm text-indigo-400 font-semibold">{formatDate(post?.date?.start_date || post.createdTime, BLOG.lang)}</div>
+            <a href={`${BLOG.path}/${post.slug}`} className="block mt-1 text-xl leading-tight font-medium text-black dark:text-gray-200 hover:underline">{post.title}</a>
+            <div className="uppercase tracking-wide text-sm text-indigo-300 font-semibold">{formatDate(post?.date?.start_date || post.createdTime, BLOG.lang)}</div>
             <p className="mt-2 text-gray-400">{post.summary}</p>
           </main>
         </div>
