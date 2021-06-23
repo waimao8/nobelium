@@ -14,7 +14,7 @@ const Tags = ({ tags, currentTag }) => {
                   className={`mr-3 py-2 font-medium border px-4 whitespace-nowrap dark:text-gray-300 ${
                     selected
                       ? 'text-white bg-black border-black dark:bg-gray-600 dark:border-gray-600'
-                      : 'bg-gray-100 border-gray-100 text-gray-400 dark:bg-night dark:border-gray-800'
+                      : 'bg-gray-100 border-gray-200 text-gray-400 dark:bg-night dark:border-gray-800'
                   }`}
                 >
                   {`${key} (${tags[key]})`}
