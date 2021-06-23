@@ -71,7 +71,7 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
         />
         <main
           className={
-            `m-auto flex-grow w-full transition-all ${!fullWidth ? 'max-w-5xl px-10 py-12' : 'px-4 md:px-24'}`}
+            `m-auto flex-grow w-full transition-all ${layout === 'blog' ? 'bg-day shadow-xl':''} ${!fullWidth ? 'max-w-5xl px-10 py-12' : 'px-4 md:px-24'}`}
         >
           {children}
         </main>

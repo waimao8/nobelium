@@ -135,3 +135,7 @@ nav {
     @apply bg-day bg-opacity-90 dark:bg-night dark:bg-opacity-90;
   }
 }
+
+.bg-page {
+  background-color: #f2f2f2
+}
