@@ -5,7 +5,7 @@ import formatDate from '@/lib/formatDate'
 const BlogPost = ({ post }) => {
   return (
       <article key={post.id} className="mb-6 md:mb-8 max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-3xl">
-        <div className="md:flex dark:bg-gray-800">
+        <div className="md:flex dark:bg-gray-800 border">
           <Link className="md:flex-shrink-0" href={`${BLOG.path}/${post.slug}`} >
             <img className="h-52 w-full md:h-44 md:w-56 object-cover" src={post.page_cover ?? post.page_image}
                  alt={post.title}/>
