@@ -92,7 +92,7 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
       layout="blog"
       title={frontMatter.title}
       description={frontMatter.summary}
-      // date={new Date(frontMatter.publishedAt).toISOString()}
+      date={new Date(frontMatter.createdTime).toISOString()}
       type="article"
     >
       <article className="md:p-20">
