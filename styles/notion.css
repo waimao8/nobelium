@@ -121,7 +121,7 @@
 
 .notion-aside {
   position: sticky;
-  top: calc((100vh - 150px) / 2);
+  top: calc(88px);
   opacity: 80%;
   align-self: flex-start;
   flex: 1;
