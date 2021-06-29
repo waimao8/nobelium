@@ -50,44 +50,6 @@ class MyDocument extends Document {
             </>
           )}
 
-          {['zh', 'ja', 'ko'].includes(
-            BLOG.lang.slice(0, 2).toLocaleLowerCase()
-          ) && (
-            <>
-              {/* 国内谷歌字体镜像 
-                    fonts.gstatic.com = gstatic.loli.net
-                    fonts.googleapis.com = fonts.loli.net
-                */}
-              <link
-                rel="preconnect"
-                href="https://gstatic.loli.net"
-                crossOrigin="anonymous"
-              />
-              
-              <link
-                rel="preload"
-                as="style"
-                href={`https://fonts.loli.net/css2?family=Noto+${
-                  BLOG.font === 'serif' ? 'Serif' : 'Sans'
-                }+${CJK()}:wght@400;500;700&display=swap`}
-              />
-              <link
-                rel="stylesheet"
-                href={`https://fonts.loli.net/css2?family=Noto+${
-                  BLOG.font === 'serif' ? 'Serif' : 'Sans'
-                }+${CJK()}:wght@400;500;700&display=swap`}
-              />
-              <noscript>
-                <link
-                  rel="stylesheet"
-                  href={`https://fonts.loli.net/css2?family=Noto+${
-                    BLOG.font === 'serif' ? 'Serif' : 'Sans'
-                  }+${CJK()}:wght@400;500;700&display=swap`}
-                />
-              </noscript>
-            </>
-          )}
-
           <link rel="icon" href="/favicon.ico" />
           <link rel="icon" href="/favicon.svg" type="image/svg+xml"></link>
           {BLOG.analytics && BLOG.analytics.provider === 'ackee' && (

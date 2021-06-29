@@ -61,9 +61,7 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
         )}
       </Head>
       <div
-        className={`wrapper ${
-          BLOG.font === 'serif' ? 'font-serif' : 'font-sans'
-        }`}
+        className={`wrapper ${BLOG.font}`}
       >
         <Header
           navBarTitle={layout === 'blog' ? meta.title : null}
