@@ -153,7 +153,7 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
       </article>
 
         {showToc && toc && (
-          <aside className='notion-aside fixed bg-white dark:bg-gray-800 dark:bg-opacity-70 shadow-card rounded-xl right-2 p-2 md:block sm:none'>
+          <aside className='notion-aside fixed bg-white dark:bg-gray-800 dark:bg-opacity-70 shadow-card rounded-xl left-10 p-2 md:block sm:none'>
             <div className='notion-aside-table-of-contents px-2 max-w-xs'>
               <div className='notion-aside-table-of-contents-header  dark:text-gray-300'>
                 目录
