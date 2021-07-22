@@ -1,6 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import BLOG from '@/blog.config'
-import CJK from '@/lib/cjk'
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx)
@@ -53,6 +52,8 @@ class MyDocument extends Document {
           <link rel="icon" href="/favicon.ico" />
           <link rel="icon" href="/favicon.svg" type="image/svg+xml"></link>
           <link rel="apple-touch-icon" sizes="192x192" href="/apple-touch-icon.png"></link>
+          <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css"></link>
+
 
           {BLOG.analytics && BLOG.analytics.provider === 'ackee' && (
             <script
@@ -84,7 +85,7 @@ class MyDocument extends Document {
             />
           )}
           {/* 百度 */}
-          {1===1 && (
+          { (
             <>
               <script
                 dangerouslySetInnerHTML={{
@@ -101,11 +102,11 @@ class MyDocument extends Document {
               />
             </>
           )}
-          {/*不蒜子*/}
+          {/* 不蒜子 */}
           <script async
             src={`//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js`}
           />
-          {1===1 && (
+          { (
             <>
               <script
                 dangerouslySetInnerHTML={{
@@ -117,7 +118,7 @@ class MyDocument extends Document {
             </>
           )}
           {/* 站长统计 */}
-          {1===1 && (
+          { (
             <>
               <script
                 dangerouslySetInnerHTML={{
