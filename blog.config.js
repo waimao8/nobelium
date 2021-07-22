@@ -3,7 +3,7 @@ const BLOG = {
   author: 'tangHH',
   email: 'tlyong1992@hotmail.com',
   link: 'https://tangly1024.com',
-  description: 'TangHH博客',
+  description: '唐风集里，收卷波澜',
   lang: 'zh-CN', // ['zh-CN','en-US']
   appearance: 'auto', // ['light', 'dark', 'auto'],
   font: 'font-mono', // ['font-sans', 'font-serif', 'font-mono']

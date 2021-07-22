@@ -15,7 +15,8 @@
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "postbuild": "next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
     "feed": "^4.2.2",
@@ -42,7 +43,8 @@
     "eslint-plugin-react": "^7.23.2",
     "postcss": "^8.2.15",
     "prettier": "^2.3.0",
-    "tailwindcss": "^2.1.2"
+    "tailwindcss": "^2.1.2",
+    "next-sitemap": "^1.6.102"
   },
   "resolutions": {
     "axios": ">=0.21.1"

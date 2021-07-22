@@ -52,6 +52,8 @@ class MyDocument extends Document {
 
           <link rel="icon" href="/favicon.ico" />
           <link rel="icon" href="/favicon.svg" type="image/svg+xml"></link>
+          <link rel="apple-touch-icon" sizes="192x192" href="/apple-touch-icon.png"></link>
+
           {BLOG.analytics && BLOG.analytics.provider === 'ackee' && (
             <script
               async

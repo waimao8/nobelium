@@ -48,7 +48,7 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
         <meta name="twitter:title" content={meta.title} />
         <meta
           name="twitter:image"
-          content={`https://og-image-craigary.vercel.app/${meta.title}.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fnobelium.vercel.app%2Flogo-for-dark-bg.svg`}
+          content={`https://og-image-craigary.vercel.app/${meta.title}.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fnobelium.vercel.app%2Ffavicon.svg`}
         />
         {meta.type === 'article' && (
           <>
@@ -69,7 +69,7 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
         />
         <main
           className={
-            `m-auto flex-grow w-full transition-all ${layout === 'blog' ? 'bg-day dark:bg-gray-700 shadow-card':''} ${!fullWidth ? 'max-w-4xl px-10 py-12' : 'px-4 md:px-24'}`}
+            `m-auto flex-grow w-full transition-all ${layout === 'blog' ? 'bg-day dark:bg-gray-700 shadow-card':''} ${!fullWidth ? 'max-w-3xl px-10 py-12' : 'px-4 md:px-24'}`}
         >
           {children}
         </main>
