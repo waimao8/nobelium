@@ -7,6 +7,7 @@ import 'prismjs/themes/prism-okaidia.css'
 import 'prismjs/components/prism-markup'
 import 'prismjs/components/prism-python'
 import 'prismjs/components/prism-bash'
+import 'animate.css'
 import BLOG from '@/blog.config'
 import dynamic from 'next/dynamic'
 import { LocaleProvider } from '@/lib/locale'
@@ -14,7 +15,7 @@ import { LocaleProvider } from '@/lib/locale'
 const Ackee = dynamic(() => import('@/components/Ackee'), { ssr: false })
 const Gtag = dynamic(() => import('@/components/Gtag'), { ssr: false })
 
-function MyApp({ Component, pageProps }) {
+function MyApp ({ Component, pageProps }) {
   return (
     <LocaleProvider>
       <>

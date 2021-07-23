@@ -19,6 +19,7 @@
     "postbuild": "next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "feed": "^4.2.2",
     "gitalk": "^1.7.2",
     "lodash.throttle": "^4.1.1",
@@ -35,16 +36,15 @@
   "devDependencies": {
     "autoprefixer": "^10.2.5",
     "eslint": "^7.26.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-next": "^11.0.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.23.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.23.2",
+    "next-sitemap": "^1.6.102",
     "postcss": "^8.2.15",
-    "prettier": "^2.3.0",
-    "tailwindcss": "^2.1.2",
-    "next-sitemap": "^1.6.102"
+    "tailwindcss": "^2.1.2"
   },
   "resolutions": {
     "axios": ">=0.21.1"

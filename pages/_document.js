@@ -1,19 +1,20 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import BLOG from '@/blog.config'
 class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+  static async getInitialProps (ctx) {
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }
   }
 
-  render() {
+  render () {
     return (
       <Html
         lang={BLOG.lang}
         className={BLOG.appearance === 'dark' ? 'dark' : undefined}
       >
         <Head>
-          {BLOG.font && BLOG.font === 'serif' ? (
+          {BLOG.font && BLOG.font === 'serif'
+            ? (
             <>
               <link
                 rel="preload"
@@ -30,7 +31,8 @@ class MyDocument extends Document {
                 crossOrigin="anonymous"
               />
             </>
-          ) : (
+              )
+            : (
             <>
               <link
                 rel="preload"
@@ -47,13 +49,13 @@ class MyDocument extends Document {
                 crossOrigin="anonymous"
               />
             </>
-          )}
+              )}
 
           <link rel="icon" href="/favicon.ico" />
           <link rel="icon" href="/favicon.svg" type="image/svg+xml"></link>
           <link rel="apple-touch-icon" sizes="192x192" href="/apple-touch-icon.png"></link>
+          {/* 字体 */}
           <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css"></link>
-
 
           {BLOG.analytics && BLOG.analytics.provider === 'ackee' && (
             <script
@@ -104,7 +106,7 @@ class MyDocument extends Document {
           )}
           {/* 不蒜子 */}
           <script async
-            src={`//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js`}
+            src={'//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'}
           />
           { (
             <>

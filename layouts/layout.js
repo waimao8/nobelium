@@ -36,7 +36,13 @@ const mapPageUrl = id => {
   return BLOG.path + id.replace(/-/g, '')
 }
 
-const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
+const DefaultLayout = ({
+  children,
+  blockMap,
+  frontMatter,
+  emailHash,
+  fullWidth = true
+}) => {
   const locale = useLocale()
   const router = useRouter()
   const cusdisI18n = ['zh-cn', 'es', 'tr', 'pt-BR', 'oc']
@@ -89,53 +95,54 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
 
   return (
     <Container
-      layout="blog"
+      layout='blog'
       title={frontMatter.title}
       description={frontMatter.summary}
       date={new Date(frontMatter.createdTime).toISOString()}
-      type="article"
+      type='article'
+      fullWidth={fullWidth}
     >
-      <article className="md:p-20">
-        <img src={frontMatter.page_cover} className={"w-full max-h-60 mb-3 object-cover"}/>
-        <h1 className="font-bold text-3xl text-black dark:text-white">
+      <article className='md:p-5'>
+        <img src={frontMatter.page_cover} className={'w-full max-h-60 mb-3 object-cover'} />
+        <h1 className='font-bold text-3xl text-black dark:text-white'>
           {frontMatter.title}
         </h1>
         {frontMatter.type[0] !== 'Page' && (
-          <nav className="flex mt-7 items-start text-gray-500 dark:text-gray-400">
-            <div className="flex mb-4">
-              <a href={BLOG.socialLink || '#'} className="flex">
+          <nav className='flex mt-7 items-start text-gray-500 dark:text-gray-400'>
+            <div className='flex mb-4'>
+              <a href={BLOG.socialLink || '#'} className='flex'>
                 <Image
                   alt={BLOG.author}
                   width={24}
                   height={24}
-                  src="/avatar.svg"
-                  className="rounded-full"
+                  src='/avatar.svg'
+                  className='rounded-full'
                 />
-                <p className="ml-2 md:block">{BLOG.author}</p>
+                <p className='ml-2 md:block'>{BLOG.author}</p>
               </a>
-              <span className="block">&nbsp;/&nbsp;</span>
+              <span className='block'>&nbsp;/&nbsp;</span>
             </div>
-            <div className="mr-2 mb-4 md:ml-0">
+            <div className='mr-2 mb-4 md:ml-0'>
               {formatDate(
                 frontMatter?.date?.start_date || frontMatter.createdTime,
                 BLOG.lang
               )}
             </div>
             {frontMatter.tags && (
-              <div className="flex flex-nowrap max-w-full overflow-x-auto article-tags">
+              <div className='flex flex-nowrap max-w-full overflow-x-auto article-tags'>
                 {frontMatter.tags.map(tag => (
                   <TagItem key={tag} tag={tag} />
                 ))}
               </div>
             )}
-            <div id="busuanzi_container_page_pv" className="px-3">
-              &nbsp;阅读 &nbsp;<span id="busuanzi_value_page_pv"></span>
+            <div id='busuanzi_container_page_pv' className='px-3'>
+              <span className='fa fa-eye'/><span id='busuanzi_value_page_pv'></span>
             </div>
           </nav>
         )}
         {children}
         {blockMap && (
-          <div className="-mt-4">
+          <div className='-mt-4'>
             <NotionRenderer
               recordMap={blockMap}
               components={{
@@ -152,30 +159,31 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
         )}
       </article>
 
-        {showToc && toc && (
-          <aside className='notion-aside fixed bg-white dark:bg-gray-800 dark:bg-opacity-70 shadow-card rounded-xl left-10 p-2 md:block sm:none'>
-            <div className='notion-aside-table-of-contents px-2 max-w-xs'>
-              <div className='notion-aside-table-of-contents-header  dark:text-gray-300'>
-                目录
-              </div>
+      {showToc && toc && (
+        <aside
+          className='animate__animated animate__bounceInUp notion-aside fixed bg-white dark:bg-gray-800 dark:bg-opacity-70 shadow-card rounded-xl left-10 p-2 md:block sm:none'>
+          <div className='notion-aside-table-of-contents px-2 w-1.5'>
+            <div className='notion-aside-table-of-contents-header  dark:text-gray-300'>
+              目录
+            </div>
 
-              <nav
-                className='notion-table-of-contents notion-gray'
-              >
-                {toc.map((tocItem) => {
-                  const id = uuidToId(tocItem.id)
+            <nav
+              className='notion-table-of-contents notion-gray'
+            >
+              {toc.map((tocItem) => {
+                const id = uuidToId(tocItem.id)
 
-                  return (
-                    <a
-                      key={id}
-                      href={`#${id}`}
-                      className={cs(
-                        'notion-table-of-contents-item',
-                        `notion-table-of-contents-item-indent-level-${tocItem.indentLevel}`,
-                        activeSection === id &&
-                        'notion-table-of-contents-active-item'
-                      )}
-                    >
+                return (
+                  <a
+                    key={id}
+                    href={`#${id}`}
+                    className={cs(
+                      'notion-table-of-contents-item',
+                      `notion-table-of-contents-item-indent-level-${tocItem.indentLevel}`,
+                      activeSection === id &&
+                      'notion-table-of-contents-active-item'
+                    )}
+                  >
                       <span
                         className='notion-table-of-contents-item-body'
                         style={{
@@ -185,24 +193,24 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
                       >
                         {tocItem.text}
                       </span>
-                    </a>
-                  )
-                })}
-              </nav>
-            </div>
-          </aside>
-        )}
+                  </a>
+                )
+              })}
+            </nav>
+          </div>
+        </aside>
+      )}
 
-      <div className="flex justify-between font-medium text-gray-500 dark:text-gray-400">
+      <div className='flex justify-between font-medium text-gray-500 dark:text-gray-400'>
         <button
           onClick={() => router.back()}
-          className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
+          className='mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100'
         >
           ← {locale.POST.BACK}
         </button>
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
+          className='mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100'
         >
           ↑ {locale.POST.TOP}
         </button>

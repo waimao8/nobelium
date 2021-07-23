@@ -1,5 +1,4 @@
-import DefaultLayout from '@/layouts/default'
-import FullWidthLayout from '@/layouts/fullwidth'
+import DefaultLayout from '@/layouts/layout'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import BLOG from '@/blog.config'
 import { createHash } from 'crypto'
@@ -8,34 +7,25 @@ import { idToUuid } from 'notion-utils'
 const BlogPost = ({ post, blockMap, emailHash }) => {
   if (!post) return null
   return (
-    <>
-      {post.fullWidth ? (
-        <FullWidthLayout
-          blockMap={blockMap}
-          frontMatter={post}
-          emailHash={emailHash}
-        ></FullWidthLayout>
-      ) : (
         <DefaultLayout
           blockMap={blockMap}
           frontMatter={post}
           emailHash={emailHash}
-        ></DefaultLayout>
-      )}
-    </>
+          fullWidth={post.fullWidth}
+        />
   )
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths () {
   let posts = await getAllPosts()
   posts = posts.filter(post => post.status[0] === 'Published')
   return {
-    paths: posts.map(row => row.slug? `${BLOG.path}/${row.slug}` :`${BLOG.path}/${row.id}`),
+    paths: posts.map(row => row.slug ? `${BLOG.path}/${row.slug}` : `${BLOG.path}/${row.id}`),
     fallback: true
   }
 }
 
-export async function getStaticProps({ params: { slug } }) {
+export async function getStaticProps ({ params: { slug } }) {
   let posts = await getAllPosts()
   posts = posts.filter(post => post.status[0] === 'Published')
   let post = posts.find(t => t.slug === slug)

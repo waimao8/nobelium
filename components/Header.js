@@ -2,14 +2,12 @@ import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import BLOG from '@/blog.config'
 import { useLocale } from '@/lib/locale'
+import Image from 'next/image'
 
 const NavBar = () => {
   const locale = useLocale()
   const links = [
-    { id: 0, icon: 'fa-home',name: locale.NAV.INDEX, to: BLOG.path || '/', show: true },
-    { id: 1, icon: 'fa-rss', name: locale.NAV.ABOUT, to: '/about', show: BLOG.showAbout },
-    { id: 2, icon: 'fa-rss', name: locale.NAV.RSS, to: '/feed', show: true },
-    { id: 3, icon: 'fa-search', name: locale.NAV.SEARCH, to: '/search', show: true }
+    { id: 0, icon: 'fa-search', name: locale.NAV.SEARCH, to: '/search', show: true }
   ]
   return (
     <div className='flex-shrink-0'>
@@ -22,7 +20,7 @@ const NavBar = () => {
                 className='block ml-4 text-black dark:text-gray-50 nav'
               >
                 <Link href={link.to}>
-                    <a>{link.name}{(link.icon && (<i className={'px-1 fa ' + link.icon} />))}</a>
+                  <a>{(link.icon && (<i className={'px-1 fa ' + link.icon} />))} {link.name}</a>
                 </Link>
               </li>
             )
@@ -35,6 +33,7 @@ const NavBar = () => {
 const Header = ({ navBarTitle, fullWidth }) => {
   const navRef = useRef(null)
   const sentinalRef = useRef([])
+  // 滚动页面后添加class
   const handler = ([entry]) => {
     if (navRef && navRef.current) {
       if (!entry.isIntersecting && entry !== undefined) {
@@ -54,7 +53,7 @@ const Header = ({ navBarTitle, fullWidth }) => {
   }, [sentinalRef])
   return (
     <>
-      <div className='observer-element h-4' ref={sentinalRef}></div>
+      <div className='observer-element h-4' ref={sentinalRef}/>
       <div
         className={`sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 py-8 bg-opacity-60 ${
           !fullWidth ? 'max-w-5xl px-4' : 'px-4 md:px-24'
@@ -66,46 +65,28 @@ const Header = ({ navBarTitle, fullWidth }) => {
           <Link href='/'>
             <a>
               <div className='h-6'>
-                <svg
-                  width='24'
-                  height='24'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <rect
-                    width='24'
-                    height='24'
-                    className='fill-current text-black dark:text-white'
-                  />
-                  <rect width='24' height='24' fill='url(#paint0_radial)' />
-                  <defs>
-                    <radialGradient
-                      id='paint0_radial'
-                      cx='0'
-                      cy='0'
-                      r='1'
-                      gradientUnits='userSpaceOnUse'
-                      gradientTransform='rotate(45) scale(39.598)'
-                    >
-                      <stop stopColor='#CFCFCF' stopOpacity='0.6' />
-                      <stop offset='1' stopColor='#E9E9E9' stopOpacity='0' />
-                    </radialGradient>
-                  </defs>
-                </svg>
+                <Image
+                  alt={BLOG.author}
+                  width={24}
+                  height={24}
+                  src='/favicon.svg'
+                  className='rounded-full'
+                />
               </div>
             </a>
           </Link>
-          {navBarTitle ? (
+          {navBarTitle
+            ? (
             <p className='ml-2 font-medium text-day dark:text-night header-name'>
               {navBarTitle}
             </p>
-          ) : (
+              )
+            : (
             <p className='ml-2 font-medium text-day dark:text-night header-name'>
               {BLOG.title},{' '}
               <span className='font-normal'>{BLOG.description}</span>
             </p>
-          )}
+              )}
         </div>
         <NavBar />
       </div>
