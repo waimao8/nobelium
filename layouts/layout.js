@@ -136,7 +136,7 @@ const DefaultLayout = ({
               </div>
             )}
             <div id='busuanzi_container_page_pv' className='px-3'>
-              <span className='fa fa-eye'/><span id='busuanzi_value_page_pv'></span>
+              <span className='fa fa-eye'/>&nbsp;<span id='busuanzi_value_page_pv'>0</span>
             </div>
           </nav>
         )}
