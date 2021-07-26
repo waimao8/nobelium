@@ -161,14 +161,14 @@ const DefaultLayout = ({
 
       {showToc && toc && (
         <aside
-          className='animate__animated animate__bounceInUp notion-aside fixed bg-white dark:bg-gray-800 dark:bg-opacity-70 shadow-card rounded-xl left-10 p-2 md:block sm:none'>
+          className='animate__animated animate__bounceInUp notion-aside fixed bg-white dark:bg-gray-800 dark:bg-opacity-70 shadow-card rounded-xl right-5 p-2 md:none lg:block'>
           <div className='notion-aside-table-of-contents px-2 w-1.5'>
             <div className='notion-aside-table-of-contents-header  dark:text-gray-300'>
               目录
             </div>
 
             <nav
-              className='notion-table-of-contents notion-gray'
+              className='notion-table-of-contents text-gray-600'
             >
               {toc.map((tocItem) => {
                 const id = uuidToId(tocItem.id)
