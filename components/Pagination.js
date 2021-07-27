@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import BLOG from '@/blog.config'
 import { useLocale } from '@/lib/locale'
 
@@ -7,7 +6,7 @@ const Pagination = ({ page, showNext }) => {
   const currentPage = +page
   return (
     <div className="flex justify-between font-medium text-black dark:text-gray-100">
-      <Link
+      <a
         href={
           currentPage - 1 === 1
             ? `${BLOG.path || '/'}`
@@ -22,7 +21,7 @@ const Pagination = ({ page, showNext }) => {
         >
           ← {locale.PAGINATION.PREV}
         </button>
-      </Link>
+      </a>
       <a href={`/page/${currentPage + 1}`}>
         <button
           rel="next"
