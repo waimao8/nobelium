@@ -53,7 +53,6 @@ class MyDocument extends Document {
 
           <link rel="icon" href="/favicon.ico" />
           <link rel="icon" href="/favicon.svg" type="image/svg+xml"></link>
-          <link rel="apple-touch-icon" sizes="192x192" href="/apple-touch-icon.png"></link>
           {/* 字体 */}
           <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css"></link>
         </Head>

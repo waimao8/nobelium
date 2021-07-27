@@ -8,7 +8,7 @@ const Tags = ({ tags, currentTag }) => {
         {Object.keys(tags).map(key => {
           const selected = key === currentTag
           return (
-            <Link key={key} href={selected ? '/search' : `/tag/${encodeURIComponent(key)}`}>
+            <a key={key} href={selected ? '/search' : `/tag/${encodeURIComponent(key)}`}>
               <a>
                 <li
                   className={`mr-3 my-1 py-2 font-medium border px-4 whitespace-nowrap dark:text-gray-300 ${
@@ -20,7 +20,7 @@ const Tags = ({ tags, currentTag }) => {
                   {`${key} (${tags[key]})`}
                 </li>
               </a>
-            </Link>
+            </a>
           )
         })}
       </ul>

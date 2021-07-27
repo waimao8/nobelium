@@ -23,14 +23,14 @@ const Pagination = ({ page, showNext }) => {
           ← {locale.PAGINATION.PREV}
         </button>
       </Link>
-      <Link href={`/page/${currentPage + 1}`}>
+      <a href={`/page/${currentPage + 1}`}>
         <button
           rel="next"
           className={`${+showNext ? 'block' : 'invisible'} cursor-pointer`}
         >
           {locale.PAGINATION.NEXT} →
         </button>
-      </Link>
+      </a>
     </div>
   )
 }
