@@ -12,6 +12,7 @@ import React from 'react'
 import throttle from 'lodash.throttle'
 
 import { getBlockParentPage, getPageTableOfContents, uuidToId } from 'notion-utils'
+import Toc from '@/components/Toc'
 
 const GitalkComponent = dynamic(
   () => {
@@ -43,55 +44,10 @@ const DefaultLayout = ({
   emailHash,
   fullWidth = true
 }) => {
-  const locale = useLocale()
   const router = useRouter()
   const cusdisI18n = ['zh-cn', 'es', 'tr', 'pt-BR', 'oc']
   const parentPageBlock = getBlockParentPage({ parent_id: frontMatter.id }, blockMap)
-  let toc = []
-  if (parentPageBlock) toc = getPageTableOfContents(parentPageBlock, blockMap)
-  const showToc = toc.length >= 1
-  const [activeSection, setActiveSection] = React.useState(null)
-  const throttleMs = 100
-  const actionSectionScrollSpy = throttle(() => {
-    const sections = document.getElementsByClassName('notion-h')
-    let prevBBox = null
-    let currentSectionId = activeSection
-
-    for (let i = 0; i < sections.length; ++i) {
-      const section = sections[i]
-      if (!section || !(section instanceof Element)) continue
-
-      if (!currentSectionId) {
-        currentSectionId = section.getAttribute('data-id')
-      }
-
-      const bbox = section.getBoundingClientRect()
-      const prevHeight = prevBBox ? bbox.top - prevBBox.bottom : 0
-      const offset = Math.max(150, prevHeight / 4)
-
-      // GetBoundingClientRect returns values relative to viewport
-      if (bbox.top - offset < 0) {
-        currentSectionId = section.getAttribute('data-id')
-
-        prevBBox = bbox
-        continue
-      }
-
-      // No need to continue loop, if last element has been detected
-      break
-    }
-
-    setActiveSection(currentSectionId)
-  }, throttleMs)
-  if (toc) {
-    React.useEffect(() => {
-      window.addEventListener('scroll', actionSectionScrollSpy)
-      actionSectionScrollSpy()
-      return () => {
-        window.removeEventListener('scroll', actionSectionScrollSpy)
-      }
-    }, [])
-  }
+  const toc = parentPageBlock ? getPageTableOfContents(parentPageBlock, blockMap) : []
 
   return (
     <Container
@@ -102,6 +58,7 @@ const DefaultLayout = ({
       type='article'
       fullWidth={fullWidth}
     >
+      {/* 文章主体 */}
       <article className='md:p-5'>
         <img src={frontMatter.page_cover} className={'w-full max-h-60 mb-3 object-cover'} />
         <h1 className='font-bold text-3xl text-black dark:text-white'>
@@ -158,57 +115,9 @@ const DefaultLayout = ({
           </div>
         )}
       </article>
+      <Toc toc={toc}/>
 
-      {showToc && toc && (
-        <aside
-          className='animate__animated animate__bounceInUp notion-aside fixed bg-white dark:bg-gray-800 dark:bg-opacity-70 shadow-card rounded-xl right-5 p-2 md:animate__bounceOutUp lg:block'>
-          <div className='notion-aside-table-of-contents px-2 w-1.5'>
-            <div className='notion-aside-table-of-contents-header  dark:text-gray-300'>
-              目录
-            </div>
-
-            <nav
-              className='notion-table-of-contents text-gray-600'
-            >
-              {toc.map((tocItem) => {
-                const id = uuidToId(tocItem.id)
-
-                return (
-                  <a
-                    key={id}
-                    href={`#${id}`}
-                    className={cs(
-                      'notion-table-of-contents-item',
-                      `notion-table-of-contents-item-indent-level-${tocItem.indentLevel}`,
-                      activeSection === id &&
-                      'notion-table-of-contents-active-item'
-                    )}
-                  >
-                      <span
-                        className='notion-table-of-contents-item-body'
-                        style={{
-                          display: 'inline-block',
-                          marginLeft: tocItem.indentLevel * 16
-                        }}
-                      >
-                        {tocItem.text}
-                      </span>
-                  </a>
-                )
-              })}
-            </nav>
-          </div>
-        </aside>
-      )}
-
-      <div className='flex justify-between font-medium text-gray-500 dark:text-gray-400'>
-        <button
-          onClick={() => router.back()}
-          className='mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100'
-        >
-          ← {locale.POST.BACK}
-        </button>
-      </div>
+      {/* 评论区 */}
       {BLOG.comment && BLOG.comment.provider === 'gitalk' && (
         <GitalkComponent
           options={{

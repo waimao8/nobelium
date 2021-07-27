@@ -60,9 +60,8 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
           </>
         )}
       </Head>
-      <div
-        className={`wrapper ${BLOG.font}`}
-      >
+      <div className={`wrapper ${BLOG.font}`}>
+        {/* 顶部导航栏 */}
         <Header
           navBarTitle={layout === 'blog' ? meta.title : null}
           fullWidth={fullWidth}
@@ -73,7 +72,10 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
         >
           {children}
         </main>
+
+        {/* 回到顶部 */}
         <TopJumper/>
+        {/* 页脚 */}
         <Footer />
       </div>
     </div>
