@@ -18,6 +18,8 @@ const Footer = ({ fullWidth = true }) => {
         <a href='https://www.cnzz.com/stat/website.php?web_id=1279970751' id='busuanzi_container_site_pv' className='fa fa-eye'> 访问量 <span id='busuanzi_value_site_pv'>0</span></a>
         <br/>
         <span><a href='https://beian.miit.gov.cn/'>闽ICP备20010331号</a> <span className='fa fa-copyright' /> {from === y || !from ? y : `${from} - ${y}`} {BLOG.author} All Rights Reserved</span>
+        <br/>
+        <span> Powered By <a href='https://vercel.com' className='bg-white rounded px-2 py-1 shadow dark:bg-black dark:text-gray-400'>Vercel</a> & <a href='https://notion.so' className='bg-white rounded px-2 py-1 shadow dark:bg-black dark:text-gray-400'>Notion</a> </span>
       </div>
 
       {/* 统计脚本 */}

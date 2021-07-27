@@ -61,9 +61,9 @@ const DefaultLayout = ({
       {/* 文章主体 */}
       <article className='md:p-5'>
         <img src={frontMatter.page_cover} className={'w-full max-h-60 mb-3 object-cover'} />
-        <h1 className='font-bold text-3xl text-black dark:text-white'>
+        {frontMatter.type[0] !== 'Page' && (<h1 className='font-bold text-3xl text-black dark:text-white'>
           {frontMatter.title}
-        </h1>
+        </h1>)}
         {frontMatter.type[0] !== 'Page' && (
           <nav className='flex mt-7 items-start text-gray-500 dark:text-gray-400'>
             <div className='flex mb-4'>
