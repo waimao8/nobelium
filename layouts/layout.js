@@ -161,7 +161,7 @@ const DefaultLayout = ({
 
       {showToc && toc && (
         <aside
-          className='animate__animated animate__bounceInUp notion-aside fixed bg-white dark:bg-gray-800 dark:bg-opacity-70 shadow-card rounded-xl right-5 p-2 md:none lg:block'>
+          className='animate__animated animate__bounceInUp notion-aside fixed bg-white dark:bg-gray-800 dark:bg-opacity-70 shadow-card rounded-xl right-5 p-2 md:animate__bounceOutUp lg:block'>
           <div className='notion-aside-table-of-contents px-2 w-1.5'>
             <div className='notion-aside-table-of-contents-header  dark:text-gray-300'>
               目录
@@ -207,12 +207,6 @@ const DefaultLayout = ({
           className='mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100'
         >
           ← {locale.POST.BACK}
-        </button>
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className='mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100'
-        >
-          ↑ {locale.POST.TOP}
         </button>
       </div>
       {BLOG.comment && BLOG.comment.provider === 'gitalk' && (

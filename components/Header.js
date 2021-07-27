@@ -33,7 +33,7 @@ const NavBar = () => {
 const Header = ({ navBarTitle, fullWidth }) => {
   const navRef = useRef(null)
   const sentinalRef = useRef([])
-  // 滚动页面后添加class
+  // 当Header移出屏幕时改变的样式
   const handler = ([entry]) => {
     if (navRef && navRef.current) {
       if (!entry.isIntersecting && entry !== undefined) {
