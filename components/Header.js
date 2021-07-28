@@ -32,7 +32,7 @@ const NavBar = () => {
 
 const Header = ({ navBarTitle, fullWidth }) => {
   const navRef = useRef(null)
-  const sentinalRef = useRef([])
+  const sentinelRef = useRef([])
   // 当Header移出屏幕时改变的样式
   const handler = ([entry]) => {
     if (navRef && navRef.current) {
@@ -44,16 +44,16 @@ const Header = ({ navBarTitle, fullWidth }) => {
     }
   }
   useEffect(() => {
-    const obvserver = new window.IntersectionObserver(handler)
-    obvserver.observe(sentinalRef.current)
+    const observer = new window.IntersectionObserver(handler)
+    observer.observe(sentinelRef.current)
     // Don't touch this, I have no idea how it works XD
     // return () => {
     //   if (sentinalRef.current) obvserver.unobserve(sentinalRef.current)
     // }
-  }, [sentinalRef])
+  }, [sentinelRef])
   return (
     <>
-      <div className='observer-element h-4' ref={sentinalRef}/>
+      <div className='observer-element h-0.5' ref={sentinelRef}/>
       <div
         className={`sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 py-8 bg-opacity-60 ${
           !fullWidth ? 'max-w-5xl px-4' : 'px-4 md:px-24'
