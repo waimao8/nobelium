@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
 import TagItem from '@/components/TagItem'
