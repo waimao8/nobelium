@@ -57,14 +57,14 @@ class MyDocument extends Document {
           <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css"></link>
 
           {/* 统计脚本 */}
-          {BLOG.analytics && BLOG.analytics.provider === 'ackee' && (
+          {BLOG.isProd && BLOG.analytics && BLOG.analytics.provider === 'ackee' && (
             <script async src={BLOG.analytics.ackeeConfig.tracker}
             data-ackee-server={BLOG.analytics.ackeeConfig.dataAckeeServer}
             data-ackee-domain-id={BLOG.analytics.ackeeConfig.domainId}
             />
           )}
 
-          {BLOG.autoCollapsedNavBar === true && (
+          {BLOG.isProd && BLOG.autoCollapsedNavBar === true && (
             <script
               dangerouslySetInnerHTML={{
                 __html: `
@@ -86,7 +86,7 @@ class MyDocument extends Document {
             />
           )}
           {/* 百度 */}
-          {(
+          {BLOG.isProd && (
             <>
               <script
                 dangerouslySetInnerHTML={{
@@ -104,10 +104,13 @@ class MyDocument extends Document {
             </>
           )}
           {/* 不蒜子 */}
-          <script async
-                  src={'//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'}
-          />
-          {(
+          {BLOG.isProd && (
+            <script async
+                    src={'//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'}
+            />
+          )}
+
+          {BLOG.isProd && (
             <script
               dangerouslySetInnerHTML={{
                 __html: `
@@ -118,7 +121,7 @@ class MyDocument extends Document {
           )}
 
           {/* 谷歌统计 */}
-          {BLOG.analytics && BLOG.analytics.provider === 'ga' && (
+          {BLOG.isProd && BLOG.analytics && BLOG.analytics.provider === 'ga' && (
             <>
               <script
                 async
