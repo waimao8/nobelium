@@ -38,3 +38,4 @@ yarn-error.log*
 /public/sitemap.xml
 /data.json
 /yarn.lock
+.idea
