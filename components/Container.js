@@ -66,12 +66,15 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
           navBarTitle={layout === 'blog' ? meta.title : null}
           fullWidth={fullWidth}
         />
-        <main
-          className={
-            `m-auto flex-grow w-full transition-all ${layout === 'blog' ? 'bg-day dark:bg-gray-700 shadow-card' : ''} ${!fullWidth ? 'max-w-3xl px-10 py-12' : 'px-4 md:px-24'}`}
-        >
-          {children}
-        </main>
+
+        <div className='flex justify-center'>
+          <main
+            className={
+              `flex-grow w-full transition-all ${layout === 'blog' ? 'bg-day dark:bg-gray-700' : ''} ${!fullWidth ? 'max-w-3xl' : ''}`}
+          >
+            {children}
+          </main>
+        </div>
 
         {/* 回到顶部 */}
         <TopJumper/>

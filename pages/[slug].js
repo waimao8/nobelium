@@ -40,6 +40,7 @@ export async function getStaticProps ({ params: { slug } }) {
     blockMap = await getPostBlocks(post.id)
   }
   const emailHash = createHash('md5').update(BLOG.email).digest('hex')
+  post.toc = getPageTableOfContents(post, blockMap)
 
   return {
     props: { post, blockMap, emailHash },

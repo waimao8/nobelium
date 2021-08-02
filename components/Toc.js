@@ -61,26 +61,26 @@ const Toc = ({ toc }) => {
   }, throttleMs)
 
   return (
-        <aside
-          className={(showToc ? 'animate__bounceInUp' : 'animate__bounceOutRight') + ' animate__animated sm:block notion-aside fixed right-5 bg-white dark:bg-gray-800 dark:bg-opacity-70 shadow-card rounded-xl p-2'}>
-          <div className='notion-aside-table-of-contents px-2 w-1.5'>
-            <div className='notion-aside-table-of-contents-header  dark:text-gray-300'>
-              目录
-            </div>
-            <nav className='notion-table-of-contents text-gray-600'>
-              {toc.map((tocItem) => {
-                const id = uuidToId(tocItem.id)
-                return (
-                  <a
-                    key={id}
-                    href={`#${id}`}
-                    className={cs(
-                      'notion-table-of-contents-item',
-                      `notion-table-of-contents-item-indent-level-${tocItem.indentLevel}`,
-                      activeSection === id &&
-                      'notion-table-of-contents-active-item'
-                    )}
-                  >
+    <aside
+      className={(showToc ? 'animate__bounceInUp' : 'animate__bounceOutRight') + ' animate__animated sm:block notion-aside fixed right-5 bg-white dark:bg-gray-800 dark:bg-opacity-70 shadow-card rounded-xl p-2'}>
+      <div className='notion-aside-table-of-contents px-2 w-1.5'>
+        <div className='notion-aside-table-of-contents-header  dark:text-gray-300'>
+          目录
+        </div>
+        <nav className='notion-table-of-contents text-gray-600'>
+          {toc.map((tocItem) => {
+            const id = uuidToId(tocItem.id)
+            return (
+              <a
+                key={id}
+                href={`#${id}`}
+                className={cs(
+                  'notion-table-of-contents-item',
+                  `notion-table-of-contents-item-indent-level-${tocItem.indentLevel}`,
+                  activeSection === id &&
+                  'notion-table-of-contents-active-item'
+                )}
+              >
                       <span
                         className='notion-table-of-contents-item-body'
                         style={{
@@ -90,12 +90,12 @@ const Toc = ({ toc }) => {
                       >
                         {tocItem.text}
                       </span>
-                  </a>
-                )
-              })}
-            </nav>
-          </div>
-        </aside>
+              </a>
+            )
+          })}
+        </nav>
+      </div>
+    </aside>
   )
 }
 

@@ -2,16 +2,12 @@ import Image from 'next/image'
 import Container from '@/components/Container'
 import TagItem from '@/components/TagItem'
 import { useRouter } from 'next/router'
-import { NotionRenderer, Equation, Code, CollectionRow, Collection, cs } from 'react-notion-x'
+import { NotionRenderer, Equation, Code, CollectionRow } from 'react-notion-x'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
 import dynamic from 'next/dynamic'
 import 'gitalk/dist/gitalk.css'
 import { useLocale } from '@/lib/locale'
-import React from 'react'
-import throttle from 'lodash.throttle'
-
-import { getBlockParentPage, getPageTableOfContents, uuidToId } from 'notion-utils'
 import Toc from '@/components/Toc'
 
 const GitalkComponent = dynamic(
@@ -34,40 +30,29 @@ const CusdisComponent = dynamic(
 )
 
 const mapPageUrl = id => {
-  return BLOG.path + id.replace(/-/g, '')
+  return 'https://www.notion.so/' + id.replace(/-/g, '')
 }
 
-const DefaultLayout = ({
-  children,
-  blockMap,
-  frontMatter,
-  emailHash,
-  fullWidth = true
-}) => {
+const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
+  const locale = useLocale()
   const router = useRouter()
   const cusdisI18n = ['zh-cn', 'es', 'tr', 'pt-BR', 'oc']
-  const parentPageBlock = getBlockParentPage({ parent_id: frontMatter.id }, blockMap)
-  const toc = parentPageBlock ? getPageTableOfContents(parentPageBlock, blockMap) : []
-
   return (
     <Container
-      layout='blog'
+      layout="blog"
       title={frontMatter.title}
       description={frontMatter.summary}
-      date={new Date(frontMatter.createdTime).toISOString()}
-      type='article'
-      fullWidth={fullWidth}
+      // date={new Date(frontMatter.publishedAt).toISOString()}
+      type="article"
     >
-      {/* 文章主体 */}
-      <article className='md:p-5'>
-        <img src={frontMatter.page_cover} className={'w-full max-h-60 mb-3 object-cover'} />
-        {frontMatter.type[0] !== 'Page' && (<h1 className='font-bold text-3xl text-black dark:text-white'>
+      <article>
+        <h1 className="font-bold text-3xl text-black dark:text-white">
           {frontMatter.title}
-        </h1>)}
+        </h1>
         {frontMatter.type[0] !== 'Page' && (
-          <nav className='flex mt-7 items-start text-gray-500 dark:text-gray-400'>
-            <div className='flex mb-4'>
-              <a href={BLOG.socialLink || '#'} className='flex'>
+          <nav className="flex mt-7 items-start text-gray-500 dark:text-gray-400">
+            <div className="flex mb-4">
+              <a href={BLOG.socialLink || '#'} className="flex">
                 <Image
                   alt={BLOG.author}
                   width={24}
@@ -77,47 +62,55 @@ const DefaultLayout = ({
                 />
                 <p className='ml-2 md:block'>{BLOG.author}</p>
               </a>
-              <span className='block'>&nbsp;/&nbsp;</span>
+              <span className="block">&nbsp;/&nbsp;</span>
             </div>
-            <div className='mr-2 mb-4 md:ml-0'>
+            <div className="mr-2 mb-4 md:ml-0">
               {formatDate(
                 frontMatter?.date?.start_date || frontMatter.createdTime,
                 BLOG.lang
               )}
             </div>
             {frontMatter.tags && (
-              <div className='flex flex-nowrap max-w-full overflow-x-auto article-tags'>
+              <div className="flex flex-nowrap max-w-full overflow-x-auto article-tags">
                 {frontMatter.tags.map(tag => (
                   <TagItem key={tag} tag={tag} />
                 ))}
               </div>
             )}
-            <div id='busuanzi_container_page_pv' className='px-3'>
-              <span className='fa fa-eye'/>&nbsp;<span id='busuanzi_value_page_pv'>0</span>
-            </div>
           </nav>
         )}
         {children}
         {blockMap && (
-          <div className='-mt-4'>
+          <div className="-mt-4">
             <NotionRenderer
               recordMap={blockMap}
               components={{
-                collection: Collection,
                 equation: Equation,
                 code: Code,
                 collectionRow: CollectionRow
               }}
-              showCollectionViewDropdown={false}
-              showTableOfContents={true}
               mapPageUrl={mapPageUrl}
             />
           </div>
         )}
       </article>
-      <Toc toc={toc}/>
 
-      {/* 评论区 */}
+      <Toc toc={frontMatter.toc}/>
+
+      <div className="flex justify-between font-medium text-gray-500 dark:text-gray-400">
+        <button
+          onClick={() => router.push(BLOG.path || '/')}
+          className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
+        >
+          ← {locale.POST.BACK}
+        </button>
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
+        >
+          ↑ {locale.POST.TOP}
+        </button>
+      </div>
       {BLOG.comment && BLOG.comment.provider === 'gitalk' && (
         <GitalkComponent
           options={{
