@@ -19,7 +19,7 @@ const Footer = ({ fullWidth = true }) => {
         <br/>
         <span><a href='https://beian.miit.gov.cn/'>闽ICP备20010331号</a> <span className='fa fa-copyright' /> {from === y || !from ? y : `${from} - ${y}`} {BLOG.author} All Rights Reserved</span>
         <br/>
-        <span> Powered By <a href='https://vercel.com' className='bg-white rounded px-2 py-1 shadow dark:bg-black dark:text-gray-400'>Vercel</a> & <a href='https://notion.so' className='bg-white rounded px-2 py-1 shadow dark:bg-black dark:text-gray-400'>Notion</a> </span>
+        <span> Powered By <a href='https://vercel.com' className='hover:shadow-lg bg-white rounded px-2 py-1 shadow dark:bg-black dark:text-gray-400'>Vercel</a> & <a href='https://notion.so' className='hover:shadow-lg bg-white rounded px-2 py-1 shadow dark:bg-black dark:text-gray-400'>Notion</a> </span>
       </div>
     </div>
   )

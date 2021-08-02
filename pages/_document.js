@@ -15,40 +15,40 @@ class MyDocument extends Document {
         <Head>
           {BLOG.font && BLOG.font === 'serif'
             ? (
-            <>
-              <link
-                rel="preload"
-                href="/fonts/SourceSerif.var.woff2"
-                as="font"
-                type="font/woff2"
-                crossOrigin="anonymous"
-              />
-              <link
-                rel="preload"
-                href="/fonts/SourceSerif-Italic.var.woff2"
-                as="font"
-                type="font/woff2"
-                crossOrigin="anonymous"
-              />
-            </>
+              <>
+                <link
+                  rel="preload"
+                  href="/fonts/SourceSerif.var.woff2"
+                  as="font"
+                  type="font/woff2"
+                  crossOrigin="anonymous"
+                />
+                <link
+                  rel="preload"
+                  href="/fonts/SourceSerif-Italic.var.woff2"
+                  as="font"
+                  type="font/woff2"
+                  crossOrigin="anonymous"
+                />
+              </>
               )
             : (
-            <>
-              <link
-                rel="preload"
-                href="/fonts/IBMPlexSansVar-Roman.woff2"
-                as="font"
-                type="font/woff2"
-                crossOrigin="anonymous"
-              />
-              <link
-                rel="preload"
-                href="/fonts/IBMPlexSansVar-Italic.woff2"
-                as="font"
-                type="font/woff2"
-                crossOrigin="anonymous"
-              />
-            </>
+              <>
+                <link
+                  rel="preload"
+                  href="/fonts/IBMPlexSansVar-Roman.woff2"
+                  as="font"
+                  type="font/woff2"
+                  crossOrigin="anonymous"
+                />
+                <link
+                  rel="preload"
+                  href="/fonts/IBMPlexSansVar-Italic.woff2"
+                  as="font"
+                  type="font/woff2"
+                  crossOrigin="anonymous"
+                />
+              </>
               )}
 
           <link rel="icon" href="/favicon.ico" />
@@ -59,8 +59,8 @@ class MyDocument extends Document {
           {/* 统计脚本 */}
           {BLOG.isProd && BLOG.analytics && BLOG.analytics.provider === 'ackee' && (
             <script async src={BLOG.analytics.ackeeConfig.tracker}
-            data-ackee-server={BLOG.analytics.ackeeConfig.dataAckeeServer}
-            data-ackee-domain-id={BLOG.analytics.ackeeConfig.domainId}
+                    data-ackee-server={BLOG.analytics.ackeeConfig.dataAckeeServer}
+                    data-ackee-domain-id={BLOG.analytics.ackeeConfig.domainId}
             />
           )}
 
