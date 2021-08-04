@@ -109,7 +109,7 @@ const Article = ({
       {/* 文章悬浮目录 */}
       <Toc toc={frontMatter.toc} />
 
-      <div className='grid justify-center mb-10'>
+      <div className='grid justify-center mb-6 py-1'>
        <span>
           <img className='md:w-72 m-auto' src='/reward_code.jpg' />
         </span>
