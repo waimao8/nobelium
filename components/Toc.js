@@ -62,7 +62,7 @@ const Toc = ({ toc }) => {
 
   return (
     <aside
-      className={(showToc ? 'animate__bounceInUp' : 'animate__bounceOutRight') + ' animate__animated transform duration-100 hover:shadow-2xl border sm:block notion-aside fixed right-5 bg-white dark:bg-gray-800 dark:bg-opacity-70 shadow-card rounded-xl p-2'}>
+      className={(showToc ? 'animate__bounceInUp' : 'animate__bounceOutRight') + ' animate__animated transform duration-300 hover:shadow-2xl border sm:block notion-aside fixed right-5 bg-white dark:bg-gray-800 dark:bg-opacity-70 shadow-card rounded p-2'}>
       <div className='notion-aside-table-of-contents px-2 w-1.5'>
         <div className='notion-aside-table-of-contents-header  dark:text-gray-300'>
           目录

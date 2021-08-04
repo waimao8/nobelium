@@ -7,7 +7,6 @@ import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
 import dynamic from 'next/dynamic'
 import 'gitalk/dist/gitalk.css'
-import { useLocale } from '@/lib/locale'
 import Toc from '@/components/Toc'
 
 const GitalkComponent = dynamic(
@@ -33,26 +32,35 @@ const mapPageUrl = id => {
   return 'https://www.notion.so/' + id.replace(/-/g, '')
 }
 
-const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
-  const locale = useLocale()
+const Article = ({
+  children,
+  blockMap,
+  frontMatter,
+  emailHash,
+  fullWidth = true
+}) => {
   const router = useRouter()
   const cusdisI18n = ['zh-cn', 'es', 'tr', 'pt-BR', 'oc']
   return (
     <Container
-      layout="blog"
+      layout='blog'
       title={frontMatter.title}
       description={frontMatter.summary}
       // date={new Date(frontMatter.publishedAt).toISOString()}
-      type="article"
+      type='article'
+      fullWidth={fullWidth}
     >
       <article>
-        <h1 className="font-bold text-3xl text-black dark:text-white">
+        {/* 文章标题 */}
+        <h1 className='font-bold text-4xl text-black dark:text-white'>
           {frontMatter.title}
         </h1>
+
+        {/* 文章信息 */}
         {frontMatter.type[0] !== 'Page' && (
-          <nav className="flex mt-7 items-start text-gray-500 dark:text-gray-400">
-            <div className="flex mb-4">
-              <a href={BLOG.socialLink || '#'} className="flex">
+          <nav className='flex mt-7 items-start text-gray-500 dark:text-gray-400 text-sm'>
+            <div className='flex mb-4'>
+              <a href={BLOG.socialLink || '#'} className='flex'>
                 <Image
                   alt={BLOG.author}
                   width={24}
@@ -62,16 +70,17 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
                 />
                 <p className='ml-2 md:block'>{BLOG.author}</p>
               </a>
-              <span className="block">&nbsp;/&nbsp;</span>
+              <span className='block'>&nbsp;/&nbsp;</span>
+
             </div>
-            <div className="mr-2 mb-4 md:ml-0">
+            <div className='mr-3 mb-4 md:ml-0'>
               {formatDate(
                 frontMatter?.date?.start_date || frontMatter.createdTime,
                 BLOG.lang
               )}
             </div>
             {frontMatter.tags && (
-              <div className="flex flex-nowrap max-w-full overflow-x-auto article-tags">
+              <div className='flex flex-nowrap max-w-full overflow-x-auto article-tags'>
                 {frontMatter.tags.map(tag => (
                   <TagItem key={tag} tag={tag} />
                 ))}
@@ -79,9 +88,12 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
             )}
           </nav>
         )}
+
         {children}
+
+        {/* Notion文章主体 */}
         {blockMap && (
-          <div className="-mt-4">
+          <div className='-mt-4'>
             <NotionRenderer
               recordMap={blockMap}
               components={{
@@ -95,22 +107,18 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
         )}
       </article>
 
-      <Toc toc={frontMatter.toc}/>
+      {/* 文章悬浮目录 */}
+      <Toc toc={frontMatter.toc} />
 
-      <div className="flex justify-between font-medium text-gray-500 dark:text-gray-400">
-        <button
-          onClick={() => router.push(BLOG.path || '/')}
-          className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
-        >
-          ← {locale.POST.BACK}
-        </button>
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
-        >
-          ↑ {locale.POST.TOP}
-        </button>
+      <div className='grid justify-center'>
+       <span>
+          <img className='md:w-72 m-auto' src='/reward_code.jpg' />
+        </span>
+        <br/>
+        <span>微信赞赏码或支付宝tlyong@126.com赞助此文</span>
       </div>
+
+      {/* 评论插件 */}
       {BLOG.comment && BLOG.comment.provider === 'gitalk' && (
         <GitalkComponent
           options={{
@@ -147,4 +155,4 @@ const DefaultLayout = ({ children, blockMap, frontMatter, emailHash }) => {
   )
 }
 
-export default DefaultLayout
+export default Article
