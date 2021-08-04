@@ -109,11 +109,11 @@ const Article = ({
       {/* 文章悬浮目录 */}
       <Toc toc={frontMatter.toc} />
 
-      <div className='grid justify-center mb-4'>
+      <div className='grid justify-center mb-10'>
        <span>
           <img className='md:w-72 m-auto' src='/reward_code.jpg' />
         </span>
-        <br/>
+        <br />
         <span>微信赞赏码或支付宝tlyong@126.com赞助此文</span>
       </div>
 
@@ -133,20 +133,24 @@ const Article = ({
         />
       )}
       {BLOG.comment && BLOG.comment.provider === 'utterances' && (
-        <UtterancesComponent issueTerm={frontMatter.id} className='px-2'/>
+        <UtterancesComponent issueTerm={frontMatter.id} className='px-2' />
       )}
       {BLOG.comment && BLOG.comment.provider === 'cusdis' && (
-        <CusdisComponent
-          attrs={{
-            host: BLOG.comment.cusdisConfig.host,
-            appId: BLOG.comment.cusdisConfig.appId,
-            pageId: frontMatter.id,
-            pageTitle: frontMatter.title,
-            pageUrl: BLOG.link + router.asPath,
-            theme: BLOG.appearance
-          }}
-          lang='zh-cn'
-        />
+        <>
+          <script defer src='https://cusdis.com/js/widget/lang/zh-cn.js' />
+          <CusdisComponent
+            attrs={{
+              host: BLOG.comment.cusdisConfig.host,
+              appId: BLOG.comment.cusdisConfig.appId,
+              pageId: frontMatter.id,
+              pageTitle: frontMatter.title,
+              pageUrl: BLOG.link + router.asPath,
+              theme: BLOG.appearance
+            }}
+            lang={BLOG.lang.toLowerCase()}
+          />
+        </>
+
       )}
     </Container>
   )
