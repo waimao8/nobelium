@@ -5,6 +5,7 @@ import { createHash } from 'crypto'
 import { getPageTableOfContents } from 'notion-utils'
 
 const BlogPost = ({ post, blockMap, emailHash }) => {
+  if (!post) return <div>404</div>
   return (
     <Article
       blockMap={blockMap}
