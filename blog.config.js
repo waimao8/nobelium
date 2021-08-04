@@ -1,9 +1,9 @@
 const BLOG = {
-  title: 'TANG`s BLOG',
-  author: 'TangHH',
+  title: 'IT迷',
+  author: 'waimao8',
   email: 'tlyong1992@hotmail.com',
   link: 'https://tangly1024.com',
-  description: '唐风集里，收卷波澜',
+  description: 'IT爱好者',
   lang: 'zh-CN', // ['zh-CN','en-US']
   appearance: 'auto', // ['light', 'dark', 'auto'],
   font: 'font-mono', // ['font-sans', 'font-serif', 'font-mono']
