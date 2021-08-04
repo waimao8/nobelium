@@ -40,7 +40,6 @@ const Article = ({
   fullWidth = true
 }) => {
   const router = useRouter()
-  const cusdisI18n = ['zh-cn', 'es', 'tr', 'pt-BR', 'oc']
   return (
     <Container
       layout='blog'
@@ -110,7 +109,7 @@ const Article = ({
       {/* 文章悬浮目录 */}
       <Toc toc={frontMatter.toc} />
 
-      <div className='grid justify-center'>
+      <div className='grid justify-center mb-4'>
        <span>
           <img className='md:w-72 m-auto' src='/reward_code.jpg' />
         </span>
@@ -134,7 +133,7 @@ const Article = ({
         />
       )}
       {BLOG.comment && BLOG.comment.provider === 'utterances' && (
-        <UtterancesComponent issueTerm={frontMatter.id} />
+        <UtterancesComponent issueTerm={frontMatter.id} className='px-2'/>
       )}
       {BLOG.comment && BLOG.comment.provider === 'cusdis' && (
         <CusdisComponent
@@ -146,9 +145,7 @@ const Article = ({
             pageUrl: BLOG.link + router.asPath,
             theme: BLOG.appearance
           }}
-          lang={cusdisI18n.find(
-            i => i.toLowerCase() === BLOG.lang.toLowerCase()
-          )}
+          lang='zh-cn'
         />
       )}
     </Container>

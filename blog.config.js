@@ -36,7 +36,7 @@ const BLOG = {
   },
   comment: {
     // support provider: gitalk, utterances, cusdis
-    provider: 'gitalk', // leave it empty if you don't need any comment plugin
+    provider: 'cusdis', // leave it empty if you don't need any comment plugin
     gitalkConfig: {
       repo: 'nobelium', // The repository of store comments
       owner: 'tlyong1992',
@@ -45,13 +45,13 @@ const BLOG = {
       clientSecret: 'dbd0f6d9ceea8940f6ed20936b415274b8fe66a2',
       distractionFreeMode: false
     },
-    utterancesConfig: {
-      repo: ''
-    },
     cusdisConfig: {
-      appId: '', // data-app-id
+      appId: '445ba48e-f751-487f-b22f-cdbe3310d28f', // data-app-id
       host: 'https://cusdis.com', // data-host, change this if you're using self-hosted version
       scriptSrc: 'https://cusdis.com/js/cusdis.es.js' // change this if you're using self-hosted version
+    },
+    utterancesConfig: {
+      repo: 'tlyong1992/nobelium'
     }
   },
   isProd: process.env.VERCEL_ENV === 'production' // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
