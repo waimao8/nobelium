@@ -5,14 +5,13 @@ import { createHash } from 'crypto'
 import { getPageTableOfContents } from 'notion-utils'
 
 const BlogPost = ({ post, blockMap, emailHash }) => {
-  if (!post) return null
   return (
-        <Article
-          blockMap={blockMap}
-          frontMatter={post}
-          emailHash={emailHash}
-          fullWidth={post.fullWidth}
-        ></Article>
+    <Article
+      blockMap={blockMap}
+      frontMatter={post}
+      emailHash={emailHash}
+      fullWidth={post.fullWidth}
+    ></Article>
   )
 }
 
@@ -20,7 +19,7 @@ export async function getStaticPaths () {
   let posts = await getAllPosts()
   posts = posts.filter(post => post.status[0] === 'Published')
   return {
-    paths: posts.map(row => `${BLOG.path}/${row.slug}`),
+    paths: posts.map(row => `${BLOG.path}/article/${row.slug}`),
     fallback: true
   }
 }
